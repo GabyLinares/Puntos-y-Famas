@@ -38,11 +38,9 @@ class _TableroState extends State<TableroD> {
                   return GestureDetector(
                     onTap: () {
                       setState(() {
-                        gameController.intentos++;
                         valoresCasillas[index1] =
                             gameController.selecNums(valoresCasillas[index1]);
                         print(valoresCasillas[index1]);
-                        gameController.verificarIntento(valoresCasillas);
                       });
                     },
                     child: Container(
@@ -94,6 +92,13 @@ class _TableroState extends State<TableroD> {
                         );
                       },
                     );
+                  }
+                  else {
+                    if (!gameController.repetidos(valoresCasillas)) {
+                      gameController.verificarIntento(valoresCasillas);
+                      valoresCasillas = List.generate(5, (index) => 0);
+                      gameController.intentos++;
+                    }
                   }
                 });
               },
