@@ -89,15 +89,7 @@ bool todosCorrectos(List<int> valoresCasillas) {
 
 // REINICIO DE PARTIDA
 void reiniciar() {
-  final rng = Random();
   numerosJuego.clear();
-  for (int i = 0; i < 3; i++) {
-    int numero = rng.nextInt(9) + 1;
-    while (numerosJuego.contains(numero)) {
-      numero = rng.nextInt(9) + 1;
-    }
-    numerosJuego.add(numero);
-  }
   intentos = 0;
   famas = 0;
   puntos = 0;
@@ -114,6 +106,24 @@ bool repetidos(List<int> listaNumeros) {
     }
   }
   return false;
+}
+
+// VERSUS
+
+// void seleccionVersus(turnoA, valoresCasillas, numerosA, numerosB, intentosA) {
+//       if (turnoA) {
+//         numerosA = List.from(valoresCasillas);
+//         intentosA.add(validar(numerosA));
+//       } else {
+//         numerosB = List.from(valoresCasillas);
+//         intentosB.add(validar(numerosB));
+//       }
+//       };
+//       turnoA = !turnoA;
+//     }
+
+void listFrom(valoresCasillas) {
+  _numerosJuego = List.from(valoresCasillas);
 }
 
 }

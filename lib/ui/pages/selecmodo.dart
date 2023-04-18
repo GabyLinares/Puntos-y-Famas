@@ -39,7 +39,7 @@ class menuSeleccionModo extends StatelessWidget {
             onPressed: () {
               Get.to(() => Versus());
             },
-            child: const Text('Modo versus'),
+            child: const Text('Versus'),
             style: ElevatedButton.styleFrom(
               primary: Colors.blue,
               padding: EdgeInsets.symmetric(
@@ -51,16 +51,18 @@ class menuSeleccionModo extends StatelessWidget {
               ),
             ),
           )),
+          const SizedBox(height: 20.0), // Espacio entre los botones y el texto
+          Container(
+            padding: EdgeInsets.all(20.0),
+            child: Text(
+              'Selecciona un modo de juego:\n\n- Solitario: Adivina un conjunto de números aleatorios en el menor número de intentos posibles.\n\n- Versus: Juega contra otro jugador y adivina los números que este ha seleccionado en el menor número de intentos posibles.',
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 }
-
-//TextField(
-  //                        keyboardType: TextInputType.number,
-    //                      inputFormatters: [
-      //                      FilteringTextInputFormatter.digitsOnly,
-        //                    LengthLimitingTextInputFormatter(1),
-          //                ],
-            //            ),

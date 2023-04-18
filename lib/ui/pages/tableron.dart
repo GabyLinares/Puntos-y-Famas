@@ -11,7 +11,7 @@ class _TableroState extends State<TableroN> {
   bool facil = false;
   bool normal = true;
   bool dificil = false;
-  List<int> valoresCasillas = List.generate(4, (index) => 0);
+  List<int> valoresCasillas = List.generate(4, (index) => -1);
   List<Color> coloresCasillas = List.generate(4, (index) => Colors.white);
 
   @override
@@ -52,7 +52,7 @@ class _TableroState extends State<TableroN> {
                       ),
                       child: Center(
                         child: Text(
-                          valoresCasillas[index1] == 0
+                          valoresCasillas[index1] == -1
                               ? ""
                               : valoresCasillas[index1].toString(),
                           style: TextStyle(
@@ -92,12 +92,30 @@ class _TableroState extends State<TableroN> {
                         );
                       },
                     );
-                  }
-                  else {
+                  } else {
                     if (!gameController.repetidos(valoresCasillas)) {
                       gameController.verificarIntento(valoresCasillas);
-                      valoresCasillas = List.generate(4, (index) => 0);
+                      valoresCasillas = List.generate(4, (index) => -1);
                       gameController.intentos++;
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Error'),
+                            content:
+                                Text('Hay números repetidos en la selección'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     }
                   }
                 });
