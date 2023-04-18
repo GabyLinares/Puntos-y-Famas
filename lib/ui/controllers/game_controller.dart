@@ -108,20 +108,6 @@ bool repetidos(List<int> listaNumeros) {
   return false;
 }
 
-// VERSUS
-
-// void seleccionVersus(turnoA, valoresCasillas, numerosA, numerosB, intentosA) {
-//       if (turnoA) {
-//         numerosA = List.from(valoresCasillas);
-//         intentosA.add(validar(numerosA));
-//       } else {
-//         numerosB = List.from(valoresCasillas);
-//         intentosB.add(validar(numerosB));
-//       }
-//       };
-//       turnoA = !turnoA;
-//     }
-
 void listFrom(valoresCasillas) {
   _numerosJuego = List.from(valoresCasillas);
 }
