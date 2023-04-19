@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parcialgabrielalinares/ui/pages/selecdif.dart';
 import '../controllers/game_controller.dart';
-import 'package:parcialgabrielalinares/ui/pages/versus.dart';
+import 'package:parcialgabrielalinares/ui/pages/selecdif2.dart';
 
 class menuSeleccionModo extends StatelessWidget {
   @override
@@ -12,6 +12,7 @@ class menuSeleccionModo extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Seleccion de modo'),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,7 +38,7 @@ class menuSeleccionModo extends StatelessWidget {
           Center(
               child: ElevatedButton(
             onPressed: () {
-              Get.to(() => Versus());
+              Get.to(() => menuSeleccionDifVer());
             },
             child: const Text('Versus'),
             style: ElevatedButton.styleFrom(

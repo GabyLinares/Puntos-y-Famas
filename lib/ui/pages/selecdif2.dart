@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:parcialgabrielalinares/ui/pages/tablerod.dart';
-import 'package:parcialgabrielalinares/ui/pages/tablerof.dart';
-import 'package:parcialgabrielalinares/ui/pages/tableron.dart';
+import 'package:parcialgabrielalinares/ui/pages/versusd.dart';
+import 'package:parcialgabrielalinares/ui/pages/versusf.dart';
+import 'package:parcialgabrielalinares/ui/pages/versusn.dart';
 import '../controllers/game_controller.dart';
 
-class menuSeleccionDif extends StatelessWidget {
+class menuSeleccionDifVer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final GameController gameController = Get.put(GameController());
     final GameController gameController = Get.find();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Seleccion de dificultad'),
@@ -24,7 +25,7 @@ class menuSeleccionDif extends StatelessWidget {
             child: ElevatedButton(
               child: const Text('Fácil (3 dígitos)'),
               onPressed: () {
-                Get.to(() => TableroF());
+                Get.to(() => VersusF());
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
@@ -42,7 +43,7 @@ class menuSeleccionDif extends StatelessWidget {
               child: ElevatedButton(
                   child: const Text('Normal (4 dígitos)'),
                   onPressed: () {
-                    Get.to(() => TableroN());
+                    Get.to(() => VersusN());
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue,
@@ -58,7 +59,7 @@ class menuSeleccionDif extends StatelessWidget {
               child: ElevatedButton(
                   child: const Text('Dificil (5 dígitos)'),
                   onPressed: () {
-                    Get.to(() => TableroD());
+                    Get.to(() => VersusD());
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue,

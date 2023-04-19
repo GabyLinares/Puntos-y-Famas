@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:parcialgabrielalinares/ui/pages/selecdif2.dart';
 import '../controllers/game_controller.dart';
+import 'versusd2.dart';
 
-class Versus extends StatefulWidget {
+class VersusD extends StatefulWidget {
   @override
   _TableroState createState() => _TableroState();
 }
 
-class _TableroState extends State<Versus> {
-  bool facil = false;
-  bool normal = false;
-  bool dificil = true;
+class _TableroState extends State<VersusD> {
   bool turnoA = true;
   List<int> valoresCasillas = List.generate(5, (index) => -1);
   List<Color> coloresCasillas = List.generate(5, (index) => Colors.white);
@@ -22,6 +21,7 @@ class _TableroState extends State<Versus> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Partida versus en curso'),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +65,7 @@ class _TableroState extends State<Versus> {
           SizedBox(height: 50),
           Text('Famas: ${gameController.famas}'),
           Text('Puntos: ${gameController.puntos}'),
-          Text('Intentos: ${gameController.intentos}'),
+          Text('Intentos: ${gameController.intentosA}'),
           ElevatedButton(
               onPressed: () {
                 setState(() {
@@ -76,77 +76,74 @@ class _TableroState extends State<Versus> {
                         print(gameController.numerosJuego);
                         valoresCasillas = List.generate(5, (index) => -1);
                         turnoA = false;
-                      }
-                      else {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Error'),
-                            content:
-                                Text('Hay números repetidos en la selección'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('OK'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-                    }
-                  }
-                  else {
-                      if (gameController.todosCorrectos(valoresCasillas)) {
+                      } else {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text('¡Felicitaciones!'),
-                              content: Text('Has adivinado todos los números'),
-                              actions: <Widget>[
+                              title: Text('Error'),
+                              content:
+                                  Text('Hay números repetidos en la selección'),
+                              actions: [
                                 TextButton(
-                                  child: Text('Volver al inicio'),
                                   onPressed: () {
-                                    gameController.reiniciar();
-                                    Navigator.of(context).pop();
                                     Navigator.of(context).pop();
                                   },
+                                  child: Text('OK'),
                                 ),
                               ],
                             );
                           },
                         );
-                      } else {
-                        if (!gameController.repetidos(valoresCasillas)) {
-                          gameController.verificarIntento(valoresCasillas);
-                          valoresCasillas = List.generate(5, (index) => -1);
-                          gameController.intentos++;
-                        } else {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Error'),
-                                content: Text(
-                                    'Hay números repetidos en la selección'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('OK'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        }
                       }
                     }
+                  } else {
+                    if (gameController.todosCorrectos(valoresCasillas)) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('¡Felicitaciones!'),
+                            content: Text('Has adivinado todos los números'),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text('Turno jugador B'),
+                                onPressed: () {
+                                  gameController.reiniciar();
+                                  Get.to(() => VersusD2());
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      if (!gameController.repetidos(valoresCasillas)) {
+                        gameController.verificarIntento(valoresCasillas);
+                        valoresCasillas = List.generate(5, (index) => -1);
+                        gameController.intentosA++;
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Error'),
+                              content:
+                                  Text('Hay números repetidos en la selección'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    }
+                  }
                 });
               },
               child: Text('Confirmar'),

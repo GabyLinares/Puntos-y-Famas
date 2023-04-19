@@ -25,6 +25,7 @@ class _TableroState extends State<TableroD> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Partida solitaria en curso'),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
